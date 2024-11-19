@@ -5,7 +5,7 @@ function GuessResults({ guessList }) {
   return (
       <div className={"guess-results"}>
 
-          {range(6).map((i) => {
+          {range(NUM_OF_GUESSES_ALLOWED).map((i) => {
               return (<p key={`guess-${i+1}`} className={"guess"}>
                   {guessList[i] ?
                       guessList[i].map(({ status, letter }, j) => {
