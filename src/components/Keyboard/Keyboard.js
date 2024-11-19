@@ -3,20 +3,14 @@ import {KEY_BOARD} from "../../data";
 
 function Keyboard ({ guessList }) {
 
-    let keys = {}
+    let keyStatus = {}
 
     guessList.map((guess) => {
         guess.map(({ status, letter }, i) => {
-            if (status === 'correct') {
-                keys = {...keys,
-                [letter] : 'correct', };
-            } else if (status === 'misplaced') {
-                keys = {...keys,
-                [letter] : 'misplaced',};
-            } else {
-                keys = {...keys,
-                [letter] : 'incorrect',}
-            }
+            keyStatus = {
+                ...keyStatus,
+                [letter] : status,
+            };
         })
     })
 
@@ -26,7 +20,7 @@ function Keyboard ({ guessList }) {
                 return (
                     <p className={"key-line"} key={`key-line-${i + 1}`}>
                         {key_line.map((key) => {
-                            return (<span key={key} className={`key ${keys[key]}`}>{key}</span>);
+                            return (<span key={key} className={`key ${keyStatus[key]}`}>{key}</span>);
                         })}
                     </p>
                 );
