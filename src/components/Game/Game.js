@@ -13,13 +13,15 @@ function Game() {
   const [userStatus, setUserStatus] = React.useState('playing');
   const [answer, setAnswer] = React.useState(sample(WORDS));
 
-  const setNewAnswer = () => {
-    setAnswer(sample(WORDS));
-  }
-
   React.useEffect(() => {
     console.log(answer);
   }, [answer]);
+
+  const handleRestart = () => {
+    setAnswer(sample(WORDS));
+    setGuessList([]);
+    setUserStatus('playing');
+  }
 
   return (<>
 
@@ -36,10 +38,8 @@ function Game() {
         <Banner
             userStatus={userStatus}
             answer={answer}
-            setNewAnswer={setNewAnswer}
             tryNum={guessList.length}
-            setGuessList={setGuessList}
-            setUserStatus={setUserStatus}
+            handleRestart={handleRestart}
         />
     }
   </>);

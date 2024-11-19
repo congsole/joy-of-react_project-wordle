@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Banner({ userStatus, answer, setNewAnswer, tryNum, setUserStatus, setGuessList }) {
+function Banner({ userStatus, answer, tryNum, handleRestart }) {
   const classNm = `${userStatus === 'won' ? 'happy' : 'sad'} banner`;
   const happyBannerContent = (
       <p>
@@ -17,11 +17,7 @@ function Banner({ userStatus, answer, setNewAnswer, tryNum, setUserStatus, setGu
     <div className={classNm}>
       {userStatus === 'won' ? happyBannerContent : sadBannerContent}
 
-        <button className={"btn restart"} onClick={() => {
-            setNewAnswer();
-            setGuessList([]);
-            setUserStatus('playing');
-        }}>Restart</button>
+        <button className={"btn restart"} onClick={handleRestart}>Restart</button>
     </div>
   );
 }

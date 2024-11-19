@@ -167,6 +167,10 @@ h1 {
   background: var(--color-error);
   color: white;
 }
+.key.incorrect {
+  background: var(--color-gray-300);
+  color: white;
+}
 
 .guess-input-wrapper {
   display: flex;
