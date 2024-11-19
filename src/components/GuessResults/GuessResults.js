@@ -1,24 +1,21 @@
 import React from 'react';
 import {NUM_OF_GUESSES_ALLOWED} from "../../constants";
-
+import { range } from '../../utils';
 function GuessResults({ guessList }) {
   return (
       <div className={"guess-results"}>
 
-          {guessList && guessList.map((guess) => {
-              return (<p key={Math.random()} className={"guess"}>
-                  {guess && guess.map((letterObj, i) => {
-                      return (<span key={i} className={`cell ${letterObj.status}`}>{letterObj.letter}</span>);
-                  })}
-              </p>)
-          })}
-
-          {Array.from({length: NUM_OF_GUESSES_ALLOWED - guessList.length}, (_, i) => {
-              return (<p key={i} className={"guess"}>
-                  {Array.from({length: 5}, (_, j) => {
-                      return (<span key={j} className={"cell"}></span>);
-                  })}
-              </p>)
+          {range(6).map((i) => {
+              return (<p key={`guess-${i+1}`} className={"guess"}>
+                  {guessList[i] ?
+                      guessList[i].map(({ status, letter }, j) => {
+                          return (<span key={j} className={`cell ${status}`}>{letter}</span>);
+                      }) :
+                      range(5).map((k) => {
+                          return (<span key={k} className={"cell"}></span>);
+                      })
+                  }
+              </p>);
           })}
 
       </div>
