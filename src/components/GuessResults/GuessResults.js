@@ -4,6 +4,7 @@ import {NUM_OF_GUESSES_ALLOWED} from "../../constants";
 function GuessResults({ guessList }) {
   return (
       <div className={"guess-results"}>
+
           {guessList.map((guess) => {
               return (<p key={Math.random()} className={"guess"}>
                   {guess.map((letterObj, i) => {
@@ -11,6 +12,7 @@ function GuessResults({ guessList }) {
                   })}
               </p>)
           })}
+
           {Array.from({length: NUM_OF_GUESSES_ALLOWED - guessList.length}, (_, i) => {
               return (<p key={i} className={"guess"}>
                   {Array.from({length: 5}, (_, j) => {
@@ -18,6 +20,7 @@ function GuessResults({ guessList }) {
                   })}
               </p>)
           })}
+
       </div>
   );
 }
