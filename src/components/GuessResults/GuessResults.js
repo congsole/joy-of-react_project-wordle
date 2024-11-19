@@ -5,9 +5,9 @@ function GuessResults({ guessList }) {
   return (
       <div className={"guess-results"}>
 
-          {guessList.map((guess) => {
+          {guessList && guessList.map((guess) => {
               return (<p key={Math.random()} className={"guess"}>
-                  {guess.map((letterObj, i) => {
+                  {guess && guess.map((letterObj, i) => {
                       return (<span key={i} className={`cell ${letterObj.status}`}>{letterObj.letter}</span>);
                   })}
               </p>)

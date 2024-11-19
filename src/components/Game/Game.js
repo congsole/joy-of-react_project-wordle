@@ -7,17 +7,22 @@ import Keyboard from "../Keyboard";
 import Banner from "../Banner";
 import GuessForm from "../GuessForm";
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
 function Game() {
 
   const [guessList, setGuessList] = React.useState([]);
   const [userStatus, setUserStatus] = React.useState('playing');
+  const [answer, setAnswer] = React.useState(sample(WORDS));
+
+  const setNewAnswer = () => {
+    setAnswer(sample(WORDS));
+  }
+
+  React.useEffect(() => {
+    console.log(answer);
+  }, [answer]);
 
   return (<>
+
     <GuessResults guessList={guessList} />
     <Keyboard guessList={guessList} />
     <GuessForm
@@ -31,7 +36,10 @@ function Game() {
         <Banner
             userStatus={userStatus}
             answer={answer}
+            setNewAnswer={setNewAnswer}
             tryNum={guessList.length}
+            setGuessList={setGuessList}
+            setUserStatus={setUserStatus}
         />
     }
   </>);
