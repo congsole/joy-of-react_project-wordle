@@ -16,7 +16,8 @@ function Banner({ userStatus, answer, setNewAnswer, tryNum, setUserStatus, setGu
   return (
     <div className={classNm}>
       {userStatus === 'won' ? happyBannerContent : sadBannerContent}
-        <button onClick={() => {
+
+        <button className={"btn restart"} onClick={() => {
             setNewAnswer();
             setGuessList([]);
             setUserStatus('playing');
